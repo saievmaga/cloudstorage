@@ -1,8 +1,5 @@
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
@@ -24,8 +21,8 @@ public class _NettyServer {
                         protected void initChannel(Channel channel) throws Exception {
                             channel.pipeline().addLast(
                                     new StringEncoder(),
-                                    new StringDecoder()
-
+                                    new StringDecoder(),
+                                    (ChannelHandler) new CommandValidateHandler()
                             );
                         }
                     });
