@@ -1,3 +1,5 @@
+package com.saiev.cloudstorage.common;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;

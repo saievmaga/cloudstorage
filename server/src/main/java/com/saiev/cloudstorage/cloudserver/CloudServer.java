@@ -1,3 +1,9 @@
+package com.saiev.cloudstorage.cloudserver;
+
+import com.saiev.cloudstorage.cloudserver.handlers.CloudAuthHandler;
+import com.saiev.cloudstorage.cloudserver.handlers.CloudStorageHandler;
+import com.saiev.cloudstorage.cloudserver.handlers.CommandValidateHandler;
+import com.saiev.cloudstorage.cloudserver.handlers.FileReceiverHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -6,9 +12,9 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
 
-public class _NettyServer {
+public class CloudServer {
 
-    public _NettyServer() {
+    public CloudServer() {
         EventLoopGroup auth = new NioEventLoopGroup(1);
         EventLoopGroup workers = new NioEventLoopGroup();
 
@@ -16,13 +22,16 @@ public class _NettyServer {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(auth, workers)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new ChannelInitializer<>() {
+                    .childHandler(new ChannelInitializer<Channel>() {
                         @Override
                         protected void initChannel(Channel channel) throws Exception {
                             channel.pipeline().addLast(
-                                    new StringEncoder(),
+                                    new FileReceiverHandler(),
                                     new StringDecoder(),
-                                    (ChannelHandler) new CommandValidateHandler()
+                                    new StringEncoder(),
+                                    new CommandValidateHandler(),
+                                    new CloudAuthHandler(),
+                                    new CloudStorageHandler()
                             );
                         }
                     });
@@ -40,6 +49,6 @@ public class _NettyServer {
     }
 
     public static void main(String[] args) {
-        new _NettyServer();
+        new CloudServer();
     }
 }

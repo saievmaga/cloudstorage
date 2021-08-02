@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="center" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.saiev.cloudstorage.client.Controller">
+    <VBox VBox.vgrow="ALWAYS">
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label fx:id="panelLabel" alignment="CENTER" maxWidth="Infinity" text="CLIENT SIDE"
+                       textAlignment="CENTER" HBox.hgrow="ALWAYS"/>
+                <HBox>
+                    <ComboBox fx:id="driveBox" onAction="#selectDriveAction"/>
+                    <TextField fx:id="pathField" editable="false" HBox.hgrow="ALWAYS"/>
+                    <Button onAction="#btnPathUpAction" text=".."/>
+                </HBox>
+                <TableView fx:id="clientTable" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="btnUpload" prefHeight="25.0" prefWidth="75.0" text="upload" onAction="#tryToUploadFile"/>
+                <Button fx:id="btnDownload" prefHeight="25.0" prefWidth="75.0" text="download"
+                        onAction="#tryToDownloadFile"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+                <Label fx:id="labelInfo" alignment="CENTER" maxWidth="Infinity" text="SERVER SIDE"
+                       textAlignment="CENTER" HBox.hgrow="ALWAYS"/>
+                <HBox>
+                    <Button fx:id="btnLogin" onAction="#tryToLogin" text="login"/>
+                    <Button fx:id="btnRegister" onAction="#tryToRegister" text="register"/>
+                    <Button fx:id="btnLogout" onAction="#tryToLogout" text="logout"/>
+                    <TextField fx:id="remotePathField" editable="false" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnUp" onAction="#cdRemoteDirUp" text=".."/>
+                    <Button fx:id="btnRoot" onAction="#cdRemoteDirRoot" text="~"/>
+                </HBox>
+                <TableView fx:id="remoteTable" VBox.vgrow="ALWAYS"/>
+                <HBox alignment="CENTER">
+                    <Button fx:id="btnNewDir" onAction="#tryToCreateDir" text="create directory">
+                        <HBox.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="btnNewFile" onAction="#tryToCreateFile" text="create file">
+                        <HBox.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="btnDelete" onAction="#tryToDelete" text="delete">
+                        <HBox.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+            </VBox>
+        </HBox>
+    </VBox>
+
+</VBox>

@@ -1,0 +1,28 @@
+package com.saiev.cloudstorage.common;
+
+public enum ResponseCommand {
+    AUTH_OK,
+    AUTH_FAIL,
+    AUTH_OUT,
+    AUTH_REQUIRED,
+    REG_OK,
+    REG_FAIL,
+
+    FILES_LIST,
+    FILES_CD_OK,
+    FILES_CD_FAIL,
+    FILES_MKDIR_OK,
+    FILES_MKDIR_ALREADY_EXISTS,
+    FILES_MKDIR_FAIL,
+    FILES_TOUCH_OK,
+    FILES_TOUCH_ALREADY_EXISTS,
+    FILES_TOUCH_FAIL,
+    FILES_RM_OK,
+    FILES_RM_NOT_EXISTS,
+    FILES_RM_DELETE_DIR,
+    FILES_RM_FAIL,
+
+    FILE_UPLOAD,
+    FILE_UPLOAD_SUCCESS,
+    FILE_DOWNLOAD
+}
